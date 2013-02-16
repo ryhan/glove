@@ -31,18 +31,6 @@
 
 <script>
 
-var ball = document.getElementById("ball");
-var diameter = 40;
-
-var vector = function(x,y){
-  this.x = x;
-  this.y = y;
-}
-
-var position = new vector( 0, 0),
-    velocity = new vector( 0, 0),
-    acceleration = new vector( 0, 0);
-
 $(document).ready(function(){
   now.name = "View";
   now.receiveMessage = function(name, message){
@@ -50,6 +38,18 @@ $(document).ready(function(){
     acceleration.y = message.y;
     console.log(name + ": " + message.x + ", " + message.y);
   }
+
+  var ball = document.getElementById("ball");
+  var diameter = 40;
+
+  var vector = function(x,y){
+    this.x = x;
+    this.y = y;
+  }
+
+  var position = new vector( 0, 0),
+      velocity = new vector( 0, 0),
+      acceleration = new vector( 0, 0);
 
   function checkBounds(){
     if ( position.x < 0 ){
