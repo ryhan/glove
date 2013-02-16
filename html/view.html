@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Glove View</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script src="/nowjs/now.js"></script>
+
+<script>
+$(document).ready(function(){
+
+  now.name = "View"
+
+  now.receiveMessage = function(name, message){
+    console.log(name + ":" + message)
+  }
+
+});
+</script>
+</head>
+<body>
+
+<div id="messages">
+</div>
+
+</body>
+</html>

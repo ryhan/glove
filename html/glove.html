@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Glove</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script src="/nowjs/now.js"></script>
+
+<script>
+$(document).ready(function(){
+
+  now.name = "Glove"
+  acceleration = {x:0, y:0}
+
+  if ( window.DeviceMotionEvent != undefined ) 
+  {
+    window.ondevicemotion = function(e) 
+    {
+      var gravity = event.accelerationIncludingGravity;
+      acceleration.x = gravity.x * 5;
+      acceleration.y = gravity.y * 5;
+
+      now.distributeMessage(acceleration)
+    }
+  }
+
+  now.receiveMessage = function(name, message){
+    console.log(name + ":" + message)
+  }
+
+});
+</script>
+</head>
+<body>
+
+<div id="messages">
+</div>
+
+</body>
+</html>
