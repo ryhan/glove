@@ -1,27 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Glove View</title>
+  <title>Glove View</title>
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script src="/nowjs/now.js"></script>
 
-<script>
-$(document).ready(function(){
+  <script>
+  $(document).ready(function(){
 
-  now.name = "View";
+    now.name = "View";
 
-  now.receiveMessage = function(name, message){
-    console.log(name + ": " + message.x + ", " + message.y);
-    $('#messages').text(name + ": " + message.x + ", " + message.y);
-  }
+    now.receiveMessage = function(name, message){
+      console.log(name + ": " + message.x + ", " + message.y);
+      $('#messages').text(name + ": " + message.x + ", " + message.y);
+    }
 
-});
-</script>
+  });
+  </script>
+  <style>
+    body{
+      background-color: black;
+    }
+
+    #button{
+      positon: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      box-sizing: border-box;
+
+      background-color: red;
+
+    }
+  </style>
 </head>
 <body>
 <strong>View</strong>
 <div id="messages">
 </div>
+
+<div id="button"></div>
 
 </body>
 </html>
