@@ -19,7 +19,7 @@ $(document).ready(function(){
       acceleration.x = gravity.x * 5;
       acceleration.y = gravity.y * 5;
 
-      $('#messages').text(name + ": " + 
+      $('#messages').text(now.name + ": " + 
         acceleration.x + ", " + acceleration.y);
 
       now.distributeMessage(acceleration);
