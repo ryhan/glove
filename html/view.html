@@ -6,23 +6,113 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script src="/nowjs/now.js"></script>
 
-  <script>
-  $(document).ready(function(){
+<style>
+  body{
+  background-color: black;
+}
 
-    now.name = "View";
+#ball{
 
-    now.receiveMessage = function(name, message){
-      console.log(name + ": " + message.x + ", " + message.y);
-      $('#messages').text(name + ": " + message.x + ", " + message.y);
+  /* Shape */
+  border-radius: 40px;
+  height: 40px;
+  width: 40px;
+
+  /* Coloring */
+  background: -webkit-radial-gradient(20px 20px, 40px 40px, #F00, #900);
+  border: 1px solid #600;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+
+  /* Position */
+  position: absolute;
+
+}
+</style>
+
+<script>
+
+var ball = document.getElementById("ball");
+var diameter = 40;
+
+var vector = function(x,y){
+  this.x = x;
+  this.y = y;
+}
+
+var position = new vector( 0, 0),
+    velocity = new vector( 0, 0),
+    acceleration = new vector( 0, 0);
+
+$(document).ready(function(){
+  now.name = "View";
+  now.receiveMessage = function(name, message){
+    acceleration.x = message.x;
+    acceleration.y = message.y;
+    console.log(name + ": " + message.x + ", " + message.y);
+  }
+
+  function checkBounds(){
+    if ( position.x < 0 ){
+      position.x = 0;
+      velocity.x *= -1;
     }
 
-  });
-  </script>
+    if ( position.y < 0 ){
+      position.y = 0;
+      velocity.y *= -1;
+    }
+
+    var windowWidth = document.documentElement.clientWidth,
+        windowHeight = document.documentElement.clientHeight;
+
+    if ( position.x > windowWidth - diameter )
+    {
+      position.x = windowWidth - diameter;
+      velocity.x *= -1;
+    }
+
+    if ( position.y > windowHeight - diameter )
+    {
+      position.y = windowHeight - diameter;
+      velocity.y *= -1;
+    }
+  }
+
+  setInterval( function(){
+    var landscape = (window.innerWidth / window.innerHeight > 1);
+
+    if ( landscape ){
+      velocity.x -= acceleration.y;
+      velocity.y -= acceleration.x;
+    }
+    else{
+      velocity.x -= acceleration.x;
+      velocity.y += acceleration.y;
+    }
+
+    velocity.x *= 0.98;
+    velocity.y *= 0.98;
+
+    position.x = parseInt( position.x + velocity.x / 50);
+    position.y = parseInt( position.y + velocity.y / 50);
+
+    checkBounds();
+
+    ball.style.left = position.x + 'px';
+    ball.style.top = position.y + 'px';
+
+  }, 25);
+
+});
+
+</script>
 </head>
 <body>
 <strong>View</strong>
 <div id="messages">
 </div>
+
+<div id="ball"></div>
 
 </body>
 </html>
