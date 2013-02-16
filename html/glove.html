@@ -19,8 +19,10 @@ $(document).ready(function(){
       acceleration.x = gravity.x * 5;
       acceleration.y = gravity.y * 5;
 
+      $('#messages').text(name + ": " + 
+        acceleration.x + ", " + acceleration.y);
+
       now.distributeMessage(acceleration);
-      $('#messages').text(name + ": " + message.x + ", " + message.y)
     }
   }
 
@@ -32,7 +34,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-
+<strong>Glove</strong>
 <div id="messages">
 </div>
 
