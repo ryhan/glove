@@ -36,7 +36,7 @@ var server = http.createServer(function(req, response)
   }
 
 });
-server.listen(8080);
+server.listen(process.env.PORT || 8080);
 
 var nowjs = require("now");
 var everyone = nowjs.initialize(server);
