@@ -21,7 +21,7 @@ $(document).ready(function(){
     {
       var gravity = event.accelerationIncludingGravity;
       acceleration.x = gravity.x * 5;
-      acceleration.y = gravity.y * 5 * -1;
+      acceleration.y = gravity.y * 5;
 
       $('#messages').text(now.name + ": " + 
         acceleration.x + ", " + acceleration.y);
