@@ -8,10 +8,11 @@
 <script>
 $(document).ready(function(){
 
-  now.name = "View"
+  now.name = "View";
 
   now.receiveMessage = function(name, message){
-    console.log(name + ":" + message)
+    console.log(name + ": " + message.x + ", " + message.y);
+    $('#messages').text(name + ": " + message.x + ", " + message.y);
   }
 
 });

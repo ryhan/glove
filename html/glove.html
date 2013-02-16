@@ -8,8 +8,8 @@
 <script>
 $(document).ready(function(){
 
-  now.name = "Glove"
-  acceleration = {x:0, y:0}
+  now.name = "Glove";
+  acceleration = {x:0, y:0};
 
   if ( window.DeviceMotionEvent != undefined ) 
   {
@@ -19,12 +19,13 @@ $(document).ready(function(){
       acceleration.x = gravity.x * 5;
       acceleration.y = gravity.y * 5;
 
-      now.distributeMessage(acceleration)
+      now.distributeMessage(acceleration);
+      $('#messages').text(name + ": " + message.x + ", " + message.y)
     }
   }
 
   now.receiveMessage = function(name, message){
-    console.log(name + ":" + message)
+    console.log(name + ": " + message.x + ", " + message.y);
   }
 
 });
