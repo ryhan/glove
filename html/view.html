@@ -9,6 +9,11 @@
 <style>
 body{
   background-color: black;
+  color: white;
+  font-family: HelveticaNeue, 'Helvetica Neue', HelveticaNeueRoman, HelveticaNeue-Roman, 'Helvetica Neue Roman', Helvetica, Tahoma, Geneva, Arial, sans-serif;
+  font-size: 40px;
+  font-weight: 200;
+  font-weight: bold;
 }
 
 div,
@@ -56,6 +61,21 @@ section{
   height: 100%;
   -webkit-transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg);
 }
+
+.toolbar{
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 100px;
+}
+.button{
+  background-color: black;
+  border: 10px solid white;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 20px 40px;
+  margin: 20px;
+}
 </style>
 
 <script>
@@ -69,6 +89,7 @@ $(document).ready(function(){
   }
 
   var ball = document.getElementById("ball");
+  var scene = document.getElementById("scene");
   var diameter = 40;
 
   var vector = function(x,y){
@@ -130,7 +151,12 @@ $(document).ready(function(){
 
     ball.style.left = position.x + 'px';
     ball.style.top = position.y + 'px';
-    ball.style.opacity = (window.innerHeight - position.y)/window.innerHeight
+
+    opacity = (window.innerHeight - position.y)/window.innerHeight - 0.25;
+    if (opacity <= 0){ 
+      opacity = 0;
+    }
+    scene.style.opacity = opacity;
 
   }, 25);
 
@@ -139,13 +165,20 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<strong>View</strong>
 <div id="messages">
 </div>
 
-<div class="scene">
+<div id="scene" class="scene">
   <div class="object">
+    
+    <!-- Visible Controls -->
+    <div id="toolbar">
+      <div class="button">PLAY</div>
+    </div>
+
+    <!-- Selector -->
     <div id="ball"></div>
+
   </div>
 </div>
 
