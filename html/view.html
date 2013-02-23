@@ -54,7 +54,7 @@ section{
   position: absolute;
   width: 100%;
   height: 100%;
-  -webkit-animation: myAnimationName ease-in-out 3s infinite alternate; 
+  -webkit-transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg);
 }
 </style>
 
@@ -130,6 +130,7 @@ $(document).ready(function(){
 
     ball.style.left = position.x + 'px';
     ball.style.top = position.y + 'px';
+    ball.style.opacity = (window.innerHeight - position.y)/window.innerHeight
 
   }, 25);
 
